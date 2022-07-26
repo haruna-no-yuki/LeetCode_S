@@ -33,38 +33,39 @@
   
 * **方法1**
 ```c
-public ListNode AddTwoNumbers(ListNode l1, ListNode l2) {
-    ListNode l1Next = l1;
-    ListNode l2Next = l2;
-    ListNode finalAns = null;
-    ListNode tempAns = null;
-    int bitAdd = 0;
-    while (l1Next != null || l2Next != null)
+public ListNode ReverseBetween(ListNode head, int left, int right) {
+    int index = 1;
+    ListNode travelNode = head;
+    ListNode leftReverse, rightReverse,temp,tempTail;
+    leftReverse = rightReverse = temp = tempTail = null;
+    while (travelNode != null)
     {
-        int L1Value = l1Next == null ? 0 :l1Next.val;
-        int L2Value = l2Next == null ? 0 :l2Next.val;
-        int sum = L1Value + L2Value + bitAdd;
-        bitAdd = (int)(sum / 10);
-        ListNode insertNode = new ListNode(sum % 10);
-        if (finalAns == null){
-            finalAns = insertNode;
-            tempAns = finalAns;
+        if (index == left - 1){
+            leftReverse = travelNode;
         }
-        else
-        {
-            tempAns.next = insertNode;
-            tempAns = insertNode;
+        if (index == right + 1){
+            rightReverse = travelNode;
         }
-        l1Next = l1Next == null ? null: l1Next.next;
-        l2Next = l2Next == null ? null: l2Next.next;
-    }       
-    if (bitAdd > 0){
-        ListNode insertNode = new ListNode();
-        tempAns.next = insertNode;
-        tempAns = insertNode;
-        tempAns.val = bitAdd;
+        if (index >= left && index <= right){
+            ListNode insertNode = new ListNode(travelNode.val);
+            insertNode.next = tempTail;
+            tempTail = insertNode;
+            if (temp == null){
+                temp = insertNode;
+            }
+        }
+        index++;
+        travelNode = travelNode.next;
+    
+    if (leftReverse != null){
+        leftReverse.next = tempTail;
     }
-    return finalAns;
+    else
+    {
+        head = tempTail;
+    }
+    temp.next = rightReverse;
+    return head;
 }
 ```
   
