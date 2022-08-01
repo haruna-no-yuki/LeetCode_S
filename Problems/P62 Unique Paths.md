@@ -20,7 +20,8 @@
   
 ##  思路
 答案是C(m+n-2, m - 1)，问题是如何求得较大数的阶乘
-  
+为了优化时间，我们使用字典存储已经计算过的中间节点。
+也可以采用一维数组简化空间。其中一维数组的每次循环含义是：x = i时，不同y取值对应的路径（空间复杂度变为O(mn))
   
   
 ##  关键点
@@ -56,6 +57,33 @@ public class Solution {
             dictionary.Add(s1,ans);
         }
         return ans;
+    }
+}
+```
+
+* **方法1**
+```c
+public class Solution {
+    public int UniquePaths(int m, int n) {
+        int ans = OmnAnalyse(m, n);
+        return ans;
+    }
+
+    private int OmnAnalyse(int m, int n){
+        int[] dp = new int[n];
+        for (int i = 0; i < n; i++)
+        {
+            dp[i] = 0;
+        }
+        dp[0] = 1;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 1; j < n; j++)
+            {
+                dp[j] += dp[j - 1];
+            }
+        }
+        return dp[n - 1];
     }
 }
 ```
