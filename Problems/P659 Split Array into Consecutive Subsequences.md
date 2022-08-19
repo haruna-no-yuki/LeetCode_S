@@ -58,7 +58,7 @@ public class Solution {
         while (list.Count > 0)
         {
             int target = list[0];
-            bool flag = CheckIsListValid(target, ends, list);
+            bool flag = CheckIsListValid(target, ends, list, dic);
             if (!flag){
                 flag = CheckIsThreeValid(target, dic, list, ends);
                 if (!flag) return false;
