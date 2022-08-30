@@ -26,9 +26,10 @@
 对原数组进行排序，并创建字典dic对应数组中每个值以及以他们为父节点时所能构造的二叉树数量。
 我们发现每加入一个新的值(比之前所有的都大，这也是排序的原因),其能创建的二叉树数量是1 + 数组中满足乘积等于arr[i]的arr[j1] , arr[j2]之积
 关系方程为:
+
 if (arr[i] % arr[j] == 0) and (dic.ContainsKey(arr[i]/arr[j]))
     
-    $dic[arr[i]] += dic[arr[j]] * dic[arr[i]/arr[j]]$
+    $$dic[arr[i]] += dic[arr[j]] * dic[arr[i]/arr[j]]$$
 
   
   
